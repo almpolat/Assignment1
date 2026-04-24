@@ -1,5 +1,5 @@
 #include "BasePlayerState.h"
 
-void ABasePlayerState::AddScore() {}
+void ABasePlayerState::AddScore(float Amount) {}
 void ABasePlayerState::ConsumeLife() {}
-bool ABasePlayerState::HasRemainingLives() { return false; }
+bool ABasePlayerState::HasRemainingLives() const { return false; }

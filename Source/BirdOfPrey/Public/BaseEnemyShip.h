@@ -1,8 +1,9 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "BaseShip.h"
-#include "AIController.h"
 #include "BaseEnemyShip.generated.h"
+
+class ABaseAIController;
 
 UCLASS()
 class BIRDOFPREY_API ABaseEnemyShip : public ABaseShip
@@ -11,7 +12,7 @@ class BIRDOFPREY_API ABaseEnemyShip : public ABaseShip
 
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
-	AAIController* ShipAIController;
+	ABaseAIController* ShipAIController;
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void Move();

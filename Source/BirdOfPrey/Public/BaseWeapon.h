@@ -1,35 +1,48 @@
 #pragma once
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BaseWeapon.generated.h"
 
+class UParticleSystem;
+class USoundCue;
+
 UCLASS()
 class BIRDOFPREY_API ABaseWeapon : public AActor
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
-	bool bRequiresAimForAI;
 
-	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
-	bool bIsAutomatic;
+    ABaseWeapon();
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void StartFire();
+    UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
+    UParticleSystem* FireParticleEffect;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void StopFire();
+    UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
+    USoundCue* FireSoundCue;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void PlayFireEffects();
+    UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
+    bool bRequiresAimFor;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void GetFireEffectSpawnTransform();
+    UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
+    bool bIsAutomatic;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool HasFinishedFiring();
+    UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
+    void StartFire();
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool IsFiring();
+    UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
+    void StopFire();
+
+    UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
+    void PlayFireEffects();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+    FTransform GetFireEffectSpawnTransform();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+    bool HasFinishedFiring();
+
+    UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+    virtual bool IsFiring();
 };

@@ -16,5 +16,5 @@ public:
 	void CalcScreenDimensions();
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void OnPlayerDeath();
+	void OnPlayerDeath(AController* Killer);
 };

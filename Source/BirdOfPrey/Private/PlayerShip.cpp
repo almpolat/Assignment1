@@ -1,11 +1,11 @@
 #include "PlayerShip.h"
 
-void APlayerShip::GetShipConstantVelocity() {}
+APlayerShip::APlayerShip() {}
+void APlayerShip::GetShipConstantVelocity(FVector& Direction, float& Speed) {}
 void APlayerShip::ClampToCameraBounds() {}
-void APlayerShip::GetShipAxisAdjustment() {}
-void APlayerShip::CalcOutofBoundsAdjustment() {}
-void APlayerShip::GetPlayerAgentInfo() {}
-void APlayerShip::ShouldSpawnAIController() {}
+float APlayerShip::GetShipAxisAdjustment(float Dist, float Max) { return 0.0f; }
+FVector APlayerShip::CalcOutofBoundsAdjustment() { return FVector(); }
+void APlayerShip::GetPlayerAgentInfo(APlayerController* Player) {}
+bool APlayerShip::ShouldSpawnAIController() { return false; }
 void APlayerShip::UpdateHoverPitch() {}
 bool APlayerShip::HasDiedRecently() { return false; }
-void APlayerShip::TakeDamage() {}

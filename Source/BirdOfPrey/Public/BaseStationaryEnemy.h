@@ -1,10 +1,20 @@
 #pragma once
+
 #include "CoreMinimal.h"
-#include "BaseShip.h"
+#include "BaseGameAgent.h"
 #include "BaseStationaryEnemy.generated.h"
 
 UCLASS()
-class BIRDOFPREY_API ABaseStationaryEnemy : public ABaseShip
+class BIRDOFPREY_API ABaseStationaryEnemy : public ABaseGameAgent
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
+
+public:
+
+    ABaseStationaryEnemy();
+
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEventDied);
+
+    UPROPERTY(BlueprintAssignable, Category = "BirdOfPrey")
+    FEventDied EventDied;
 };

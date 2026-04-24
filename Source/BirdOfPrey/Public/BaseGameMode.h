@@ -1,7 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "BaseGameAgent.h"
 #include "BaseGameMode.generated.h"
+
+class ABasePlayerController;
+class ABasePowerup;
 
 UCLASS()
 class BIRDOFPREY_API ABaseGameMode : public AGameModeBase
@@ -34,7 +38,7 @@ public:
 	FTimerHandle ShipSpawnTimer;
 
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
-	TArray<AActor*> PowerUpList;
+	TArray<TSubclassOf<ABasePowerup>> PowerUpList;
 
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
 	float PickUpSpawnPercent;
@@ -42,26 +46,29 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
 	bool IsGameOverScreen;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void GetWorldScrollVelocity();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	FVector GetWorldScrollVelocity() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	AActor* GetWorldCameraActor() const;
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void GetWorldCameraActor();
+	void OnPlayerDied(ABasePlayerController* Player);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void OnPlayerDied();
+	void OnEnemyDied(ABaseGameAgent* Enemy, AController* Killer);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void OnEnemyDied();
+	FVector GetPowerUpSpawnLocation(AActor* Enemy, AActor* Killer);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void StartGame();
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void EndGame();
+	void EndGame(bool Success);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void SpawnEnemyFrom();
+	void SpawnEnemyFrom(TSubclassOf<ABaseGameAgent> ClassList);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void ResetGame();
@@ -70,8 +77,8 @@ public:
 	void RespawnPlayer();
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void TrySpawnPowerUp();
+	void TrySpawnPowerUp(FVector Location);
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void GetDistanceTravelled();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	float GetDistanceTravelled() const;
 };

@@ -1,4 +1,7 @@
 #include "BasePowerup.h"
 
-void ABasePowerup::Apply() {}
+ABasePowerup::ABasePowerup() {}
+
+void ABasePowerup::Apply(APlayerShip* PlayerShip) {}
+
 void ABasePowerup::PlayEffects() {}

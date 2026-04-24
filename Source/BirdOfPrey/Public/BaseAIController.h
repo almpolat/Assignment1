@@ -4,6 +4,8 @@
 #include "BaseGameAgent.h"
 #include "BaseAIController.generated.h"
 
+class ABasePlayerController;
+
 UCLASS()
 class BIRDOFPREY_API ABaseAIController : public AAIController
 {
@@ -11,7 +13,7 @@ class BIRDOFPREY_API ABaseAIController : public AAIController
 
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
-	ABaseGameAgent* Target;
+	ABasePlayerController* Target;
 
 	UPROPERTY(BlueprintReadWrite, Category = "BirdOfPrey")
 	ABaseGameAgent* ControlledAgent;
@@ -20,7 +22,7 @@ public:
 	void SelectTarget();
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void AimAt();
+	void AimAt(FVector AimTarget);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void CheckFire();
@@ -28,11 +30,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void UpdateAim();
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool ShouldStartFire();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	bool ShouldStartFire() const;
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool ShouldStopFire();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	bool ShouldStopFire() const;
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void StartFire();
@@ -40,6 +42,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void StopFire();
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool ShouldUpdateAim();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	bool ShouldUpdateAim() const;
 };

@@ -19,11 +19,11 @@ public:
 	float TimeOfLastDeath;
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	void AddScore();
+	void AddScore(float Amount);
 
 	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
 	void ConsumeLife();
 
-	UFUNCTION(BlueprintCallable, Category = "BirdOfPrey")
-	bool HasRemainingLives();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "BirdOfPrey")
+	bool HasRemainingLives() const;
 };
